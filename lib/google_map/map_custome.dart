@@ -57,7 +57,7 @@ class MapSampleState extends State<MapSample> {
             padding: const EdgeInsets.only(top: 5.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 NumberCaseCovid(color: Color(0xFF660202),numberCase: ">100,000",),
                 NumberCaseCovid(color: Color(0XFFa30000),numberCase: ">10,000",),
@@ -76,7 +76,7 @@ class MapSampleState extends State<MapSample> {
             if(state is VncovidCaseProvinceLoaded){
 
               state.vnCaseProvince.forEach((element) {
-                print(element.diaDiem);
+                // print(element.diaDiem);
                 if(element.tongCaNhiem>100000){
                   data.add(Model(element.diaDiem, Color(0xFF660202)));
                 }

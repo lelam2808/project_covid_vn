@@ -8,9 +8,7 @@ class VaccineInfor extends StatelessWidget {
     Key? key,
     required this.size,
   }) : super(key: key);
-
   final Size size;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -83,7 +81,7 @@ class VaccineInfor extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 0),
                   child: RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(
@@ -127,7 +125,7 @@ class VaccineInfor extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 0),
                   child: RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(
@@ -171,7 +169,7 @@ class VaccineInfor extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 0),
                   child: RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(
