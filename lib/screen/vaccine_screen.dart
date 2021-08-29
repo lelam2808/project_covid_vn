@@ -115,7 +115,7 @@ class _VaccineScreenState extends State<VaccineScreen>  with AutomaticKeepAliveC
                             });
                           },
                         decoration: InputDecoration(
-                          hintStyle: TextStyle(fontSize: 18, color: Colors.grey),
+                          hintStyle: TextStyle(fontSize: 16, color: Colors.grey),
                           hintText: "Search Province !",
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,

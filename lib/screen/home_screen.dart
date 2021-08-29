@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
           unselectedItemColor: Colors.grey,
           showUnselectedLabels: false,
           type: BottomNavigationBarType.fixed,
-          items: [Icons.home, CupertinoIcons.square_list_fill, CupertinoIcons.shield_fill, Icons.add_location_alt]
+          items: [Icons.home, CupertinoIcons.square_list_fill, CupertinoIcons.shield_fill, CupertinoIcons.location_solid]
               .asMap().map((key, value) => MapEntry(
               key, BottomNavigationBarItem(
                 title: Text(""),

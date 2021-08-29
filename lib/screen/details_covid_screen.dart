@@ -40,20 +40,17 @@ class _DetailCovidScreenState extends State<DetailCovidScreen> with AutomaticKee
     String formattedDate = DateFormat('yyyy-MM-dd').format(now);
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar:PreferredSize(
-        preferredSize: Size.fromHeight(56),
-        child: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor:  Color(0xFF473F97),
-          centerTitle: true,
-          title:  RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(
-                children: [
-                  TextSpan(text: "Detail Covid-19 Cases In VietNam\n", style: TextStyle(fontFamily: "FlutterIcons", fontSize: 16)),
-                  TextSpan(text: "Last Update $formattedDate ", style: TextStyle(fontFamily: "FlutterIcons", fontSize: 12))
-                ]
-            ),
+      appBar:AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor:  Color(0xFF473F97),
+        centerTitle: true,
+        title:  RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+              children: [
+                TextSpan(text: "Detail Covid-19 Cases In VietNam\n", style: TextStyle(fontFamily: "FlutterIcons", fontSize: 16)),
+                TextSpan(text: "Last Update $formattedDate ", style: TextStyle(fontFamily: "FlutterIcons", fontSize: 12))
+              ]
           ),
         ),
       ) ,
@@ -94,7 +91,7 @@ class _DetailCovidScreenState extends State<DetailCovidScreen> with AutomaticKee
                               });
                             },
                             decoration: InputDecoration(
-                              hintStyle: TextStyle(fontSize: 18, color: Colors.grey),
+                              hintStyle: TextStyle(fontSize: 16, color: Colors.grey),
                               hintText: "Search Province !",
                               border: InputBorder.none,
                               focusedBorder: InputBorder.none,

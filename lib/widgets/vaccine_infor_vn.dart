@@ -1,3 +1,5 @@
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -13,7 +15,7 @@ class VaccineInfor extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: size.width,
-      height: size.height*0.18,
+      height: size.height*0.16,
       decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -29,23 +31,20 @@ class VaccineInfor extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            width: size.width*0.23-5,
             height: size.height*0.18,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 0),
-                  child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                          children: [
-                            TextSpan(text: "Total\n", style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "Ubuntu")),
-                            TextSpan(text: "Vaccinations\n", style: TextStyle(color: Colors.black,fontSize: 13, fontFamily: "Ubuntu")),
-
-                          ]
-                      )
+                Container(
+                  width: size.width*0.25,
+                  height: 50,
+                  child: AutoSizeText.rich(
+                    TextSpan(text: "Total\n Vaccinations"),
+                    style: TextStyle(fontSize: 15,color: Colors.black, fontFamily: "Ubuntu"),
+                    minFontSize: 5,
+                    maxLines: 3,
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 BlocBuilder<VnVaccineCubit, VnVaccineState>(
@@ -59,7 +58,12 @@ class VaccineInfor extends StatelessWidget {
                   else if(state is VnVaccineLoaded){
                     var formatter = NumberFormat('#,###,000');
                     var count=formatter.format(state.data.totalVaccinations);
-                    return Text(count, style: TextStyle(fontFamily: "FlutterIcons", fontSize: 16, color: Colors.orange),);
+                    return AutoSizeText(
+                      '$count',
+                      style: TextStyle(fontFamily: "FlutterIcons", fontSize: 15, color: Colors.orange),
+                      minFontSize: 5,
+                      maxLines: 1,
+                    );
                   }
                   return SizedBox(
                       width: 30,
@@ -71,22 +75,19 @@ class VaccineInfor extends StatelessWidget {
             ),
           ),
           Container(
-            width: size.width*0.23-5,
             height: size.height*0.18,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 0),
-                  child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                          children: [
-                            TextSpan(text: "People\n", style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "Ubuntu",)),
-                            TextSpan(text: "Vaccinated\n", style: TextStyle(color: Colors.black,fontSize: 13, fontFamily: "Ubuntu")),
-
-                          ]
-                      )
+                Container(
+                  width: size.width*0.25,
+                  height: 50,
+                  child: AutoSizeText.rich(
+                    TextSpan(text: "People\n Vaccinated"),
+                    style: TextStyle(fontSize: 15,color: Colors.black, fontFamily: "Ubuntu"),
+                    minFontSize: 5,
+                    maxLines: 3,
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 BlocBuilder<VnVaccineCubit, VnVaccineState>(
@@ -101,7 +102,12 @@ class VaccineInfor extends StatelessWidget {
                     else if(state is VnVaccineLoaded){
                       var formatter = NumberFormat('#,###,000');
                       var count=formatter.format(state.data.peopleVaccinated);
-                      return Text(count, style: TextStyle(fontFamily: "FlutterIcons", fontSize: 16, color: Color(0xFF002163),));
+                      return AutoSizeText(
+                        '$count',
+                        style: TextStyle(fontFamily: "FlutterIcons", fontSize: 15, color: Color(0xFF002163)),
+                        minFontSize: 5,
+                        maxLines: 1,
+                      );
                     }
                     return SizedBox(
                         width: 30,
@@ -114,23 +120,20 @@ class VaccineInfor extends StatelessWidget {
             ),
           ),
           Container(
-            width: size.width*0.23-5,
             height: size.height*0.18,
 
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 0),
-                  child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                          children: [
-                            TextSpan(text: "People Full\n", style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "Ubuntu")),
-                            TextSpan(text: "Vaccinated\n", style: TextStyle(color: Colors.black,fontSize: 13, fontFamily: "Ubuntu")),
-
-                          ]
-                      )
+                Container(
+                  width: size.width*0.25,
+                  height: 50,
+                  child: AutoSizeText.rich(
+                    TextSpan(text: "People Full\n Vaccinated"),
+                    style: TextStyle(fontSize: 15,color: Colors.black, fontFamily: "Ubuntu"),
+                    minFontSize: 5,
+                    maxLines: 3,
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 BlocBuilder<VnVaccineCubit, VnVaccineState>(
@@ -145,7 +148,12 @@ class VaccineInfor extends StatelessWidget {
                     else if(state is VnVaccineLoaded){
                       var formatter = NumberFormat('#,###,000');
                       var count=formatter.format(state.data.peopleFullyVaccinated);
-                      return Text(count, style: TextStyle(fontFamily: "FlutterIcons", fontSize: 16, color: Colors.green),);
+                      return AutoSizeText(
+                        '$count',
+                        style: TextStyle(fontFamily: "FlutterIcons", fontSize: 15, color: Colors.green),
+                        minFontSize: 5,
+                        maxLines: 1,
+                      );
                     }
                     return SizedBox(
                         width: 30,
@@ -158,22 +166,19 @@ class VaccineInfor extends StatelessWidget {
             ),
           ),
           Container(
-            width: size.width*0.23-5,
             height: size.height*0.18,
-
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 0),
-                  child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                          children: [
-                            TextSpan(text: "Daily\n", style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "Ubuntu")),
-                            TextSpan(text: "Vaccinations\n", style: TextStyle(color: Colors.black,fontSize: 13, fontFamily: "Ubuntu")),
-                          ]
-                      )
+                Container(
+                  width: size.width*0.25,
+                  height: 50,
+                  child: AutoSizeText.rich(
+                    TextSpan(text: "Daily\n Vaccination"),
+                    style: TextStyle(fontSize: 15,color: Colors.black, fontFamily: "Ubuntu"),
+                    minFontSize: 5,
+                    maxLines: 3,
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 BlocBuilder<VnVaccineCubit, VnVaccineState>(
@@ -188,7 +193,12 @@ class VaccineInfor extends StatelessWidget {
                     else if(state is VnVaccineLoaded){
                       var formatter = NumberFormat('#,###,000');
                       var count=formatter.format(state.data.dailyVaccinations);
-                      return Text(count, style: TextStyle(fontFamily: "FlutterIcons", fontSize: 16, color: Colors.red),);
+                      return AutoSizeText(
+                        '$count',
+                        style: TextStyle(fontFamily: "FlutterIcons", fontSize: 15, color: Colors.red),
+                        minFontSize: 5,
+                        maxLines: 1,
+                      );
                     }
                     return SizedBox(
                         width: 30,
