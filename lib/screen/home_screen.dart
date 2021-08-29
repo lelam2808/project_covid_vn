@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_covid_vn/cubit/vnCases/vn_case_cubit.dart';
 import 'package:project_covid_vn/cubit/vn_covid_details_province/vn_covid_provice_detail_cubit.dart';
@@ -60,6 +61,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     var size=MediaQuery.of(context).size;
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     // var _l10n = PackedLocalizations.of(context);
     return SafeArea(
       child: Scaffold(

@@ -12,7 +12,7 @@ class DetailCovidScreen extends StatefulWidget {
   _DetailCovidScreenState createState() => _DetailCovidScreenState();
 }
 
-class _DetailCovidScreenState extends State<DetailCovidScreen> {
+class _DetailCovidScreenState extends State<DetailCovidScreen> with AutomaticKeepAliveClientMixin<DetailCovidScreen> {
   @override
   void initState() {
     // TODO: implement initState
@@ -96,7 +96,7 @@ class _DetailCovidScreenState extends State<DetailCovidScreen> {
             child: BlocBuilder<VnCovidProviceDetailCubit, VnCovidProviceDetailState>(
               builder: (context, state) {
                 if(state is VnCovidProviceDetailLoaded){
-                  print(state.listDetails.length);
+                  // print(state.listDetails.length);
                   return ListView.builder(
                     itemCount: state.listDetails.length,
                       itemBuilder: (context, index){
@@ -133,4 +133,8 @@ class _DetailCovidScreenState extends State<DetailCovidScreen> {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

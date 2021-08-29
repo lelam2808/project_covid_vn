@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_covid_vn/router.dart';
+import 'package:project_covid_vn/screen/home_screen.dart';
 import 'package:project_covid_vn/screen/splash_screen.dart';
 
 void main() {
@@ -16,9 +17,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: RouterGenerator.splash,
+      initialRoute: RouterGenerator.homeScreen,
       onGenerateRoute: RouterGenerator.generateRoute,
-      home: SplashScreen(),
+      home: HomeScreen(),
     );
   }
 }
