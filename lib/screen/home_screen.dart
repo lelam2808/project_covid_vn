@@ -38,7 +38,6 @@ class _HomeScreenState extends State<HomeScreen> {
          create: (context) => VnCovidProviceDetailCubit(),
          child: DetailCovidScreen(),
        ),
-       InforScreen(),
        MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => VnVaccineCubit()),
@@ -46,8 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         child: VaccineScreen(),
       ),
-
-
+       InforScreen(),
     ];
     super.initState();
   }
@@ -57,14 +55,12 @@ class _HomeScreenState extends State<HomeScreen> {
     _pageController.dispose();
       super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     var size=MediaQuery.of(context).size;
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
-    // var _l10n = PackedLocalizations.of(context);
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
@@ -80,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
           unselectedItemColor: Colors.grey,
           showUnselectedLabels: false,
           type: BottomNavigationBarType.fixed,
-          items: [Icons.home, CupertinoIcons.square_list_fill, Icons.add_location_alt, CupertinoIcons.shield_fill]
+          items: [Icons.home, CupertinoIcons.square_list_fill, CupertinoIcons.shield_fill, Icons.add_location_alt]
               .asMap().map((key, value) => MapEntry(
               key, BottomNavigationBarItem(
                 title: Text(""),

@@ -16,10 +16,6 @@ class VaccineInfor extends StatelessWidget {
       height: size.height*0.18,
       decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(20),
-            bottomRight: Radius.circular(20)
-          ),
           boxShadow: [
             BoxShadow(
                 color: Colors.black.withOpacity(0.1),

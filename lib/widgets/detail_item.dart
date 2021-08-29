@@ -38,18 +38,18 @@ class DetailItem extends StatelessWidget {
                     Text("$tcn",style: TextStyle(fontFamily: "Ubuntu", fontSize: 14))
                   ],
                 ),
-                SizedBox(width: 20,),
+                SizedBox(width: 30,),
                 Column(
                   children: [
-                    Text("Total Cases Today",style: TextStyle(fontFamily: "Ubuntu", fontSize: 14)),
+                    Text("Today Cases",style: TextStyle(fontFamily: "Ubuntu", fontSize: 14)),
                     SizedBox(height: 5,),
                     Text("$hn",style: TextStyle(fontFamily: "Ubuntu", fontSize: 14))
                   ],
                 ),
-                SizedBox(width: 20,),
+                SizedBox(width: 30,),
                 Column(
                   children: [
-                    Text("Deaths Today",style: TextStyle(fontFamily: "Ubuntu", fontSize: 14)),
+                    Text("Total Deaths",style: TextStyle(fontFamily: "Ubuntu", fontSize: 14)),
                     SizedBox(height: 5,),
                     Text("$tv",style: TextStyle(fontFamily: "Ubuntu", fontSize: 14))
                   ],

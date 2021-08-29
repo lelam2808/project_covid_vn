@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 class DetailVaccine extends StatelessWidget {
   const DetailVaccine({
     Key? key,
-    required this.plan,
     required this.oneDose,
     required this.fullDose,
     required this.rate,
-    required this.tenTinh
+    required this.tenTinh,
+    required this.plan
   }) : super(key: key);
 
   final double rate;
   final String tenTinh;
-  final String plan;
-  final oneDose, fullDose;
+  final String oneDose, fullDose, plan;
 
   @override
   Widget build(BuildContext context) {
@@ -43,28 +42,24 @@ class DetailVaccine extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
-                    width: size.width*0.2,
                     child: Column(
                       children: [
-                        Text("Plan", style: TextStyle(fontFamily: "Ubuntu", fontSize: 15),),
+                        Text("Plan", style: TextStyle(fontFamily: "Ubuntu", fontSize: 15)),
                         SizedBox(height: 5,),
-                        Text("$plan",style: TextStyle(fontFamily: "Ubuntu", fontSize: 14)),
+                        Text("$plan", style: TextStyle(fontFamily: "Ubuntu", fontSize: 14)),
                       ],
                     ),
                   ),
                   Container(
-                    width: size.width*0.2,
                     child: Column(
                       children: [
                         Text("OneDose", style: TextStyle(fontFamily: "Ubuntu", fontSize: 15)),
                         SizedBox(height: 5,),
                         Text("$oneDose", style: TextStyle(fontFamily: "Ubuntu", fontSize: 14)),
-
                       ],
                     ),
                   ),
                   Container(
-                    width: size.width*0.2,
                     child: Column(
                       children: [
                         Text("FullDose", style: TextStyle(fontFamily: "Ubuntu", fontSize: 15)),
@@ -74,20 +69,17 @@ class DetailVaccine extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: size.width*0.2,
                     child: Column(
                       children: [
                         Text("Rate", style: TextStyle(fontFamily: "Ubuntu", fontSize: 15)),
                         SizedBox(height: 5,),
                         Text("$rate", style: TextStyle(fontFamily: "Ubuntu", fontSize: 14)),
-
                       ],
                     ),
                   )
                 ],
               ),
             )
-
           ],
         ),
       ),

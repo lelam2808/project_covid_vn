@@ -308,7 +308,7 @@ class _CaseVietNamState extends State<CaseVietNam> {
                         // else {
                         //   var count="Null";
                         // }
-                        return Text(state.vnCase.critical.toString().toUpperCase(), style: TextStyle(fontSize: 15, color: Colors.white));
+                        return Text("0", style: TextStyle(fontSize: 17, color: Colors.white, fontFamily: "Ubuntu"));
                       }
                       return Text("");
                     },

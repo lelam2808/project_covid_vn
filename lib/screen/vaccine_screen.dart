@@ -18,11 +18,22 @@ class VaccineScreen extends StatefulWidget {
 }
 
 class _VaccineScreenState extends State<VaccineScreen>  with AutomaticKeepAliveClientMixin<VaccineScreen>{
+  List<DataDistribution> _result_Dis = [];
+  List<DataDistribution> _result_Dis_Search = [];
+  List<DataVacDose> _result_Vac = [];
+  List<DataVacDose> _result_Vac_Search = [];
   @override
   void initState() {
     // TODO: implement initState
     context.read<VnVaccineCubit>().getVaccineVn();
     context.read<VnVaccineDistributionCubit>().getVaccineDitributionVn();
+    VnVaccineDistribution.getVnVaccineDistribution().then((value){
+      _result_Vac.addAll(value.dataVacDose.values);
+      _result_Vac_Search=_result_Vac;
+      _result_Dis.addAll(value.dataDistribution.values);
+      _result_Dis_Search=_result_Dis;
+
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -52,13 +63,11 @@ class _VaccineScreenState extends State<VaccineScreen>  with AutomaticKeepAliveC
             );
           }
           return RichText(
-
             textAlign: TextAlign.center,
             text: TextSpan(
                 children: [
                   TextSpan(text: "Vaccine In VietNam\n",
-                      style: TextStyle(
-                          fontFamily: "FlutterIcons",fontSize: 16)),
+                      style: TextStyle(fontFamily: "FlutterIcons",fontSize: 16)),
                 ]
             ),
           );
@@ -69,69 +78,113 @@ class _VaccineScreenState extends State<VaccineScreen>  with AutomaticKeepAliveC
         crossAxisAlignment: CrossAxisAlignment.start,
         children:[
         VaccineInfor(size: size,),
-         Padding(
-              padding: const EdgeInsets.only(left: 10,top: 15,bottom: 15,),
-              child: Center(child: Text("Vaccine Details ", style: TextStyle(fontSize: 18, fontFamily: 'Ubuntu'),)),
-            ),
-          // Expanded(
-          //   child: BlocBuilder<VnVaccineDistributionCubit, VnVaccineDistributionState>(
-          //   builder: (context, state) {
-          //     if(state is VnVaccineDistributionLoaded) {
-          //       var formatter = NumberFormat('#,###,000');
-          //       print("covid length " +state.vaccineDistribution.dataDistribution.length.toString());
-          //       return ListView.builder(
-          //           itemCount: state.vaccineDistribution.dataDistribution.length,
-          //           itemBuilder: (context, int index) {
-          //             print(state.vaccineDistribution.dataDistribution[index]!.name);
-          //             return Test("a");
-          //               // tenTinh: state.vaccineDistribution.dataDistribution[index].name,
-          //               // rate: state.vaccineDistribution.dataDistribution[index]!.distributedRate.toDouble(),
-          //               // fullDose: formatter.format(state.vaccineDistribution.dataVacDose[index]!.fulldose),
-          //               // oneDose:  formatter.format(state.vaccineDistribution.dataVacDose[index]!.onedose),
-          //               // plan:  formatter.format(state.vaccineDistribution.dataDistribution[index]!.planned),
-          //             // );
-          //           });
-          //       }
-          //       return Scaffold();
-          //     },
-          //   ),
-          // ),
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 15, horizontal: size.width*0.01),
+          child: Container(
+              width: size.width*0.98,
+              height: size.height*0.07,
+              decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(20)
+              ),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Container(
+                      width: size.width*0.6,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20)
+                      ),
+                      child: Center(
+                        child: TextField(
+                          onChanged:(text){
+                            text=text.toLowerCase();
+                            setState(() {
+                              _result_Vac_Search=_result_Vac.where((element){
+                                var title=element.name.toLowerCase();
+                                return title.contains(text);
+                              }).toList();
+                              _result_Dis_Search=_result_Dis.where((element){
+                                var title=element.name.toLowerCase();
+                                return title.contains(text);
+                              }).toList();
+                              print(_result_Vac_Search);
+                            });
+                          },
+                        decoration: InputDecoration(
+                          hintStyle: TextStyle(fontSize: 18, color: Colors.grey),
+                          hintText: "Search Province !",
+                          border: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          disabledBorder: InputBorder.none,
+                        ),
+                        ),
+                      ),
+                    )
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: GestureDetector(
+                      // onTap: onSearchTextChanged(""),
+                      child: Container(
+                          width: 30,
+                          height: 30,
+                          child: Icon(Icons.search, color: Colors.grey,)
+                      ),
+                    ),
+                  )
+                ]
+            )
+          ),
+        ),
           Expanded(
             child: BlocBuilder<VnVaccineDistributionCubit, VnVaccineDistributionState>(
-              builder: (context, state) {
-                if(state is VnVaccineDistributionLoaded){
-                  var formatter = NumberFormat('#,###,000');
-                  // var count=formatter.format(state.data.totalVaccinations);
-                  return ListView(
-                      children:
-                        state.vaccineDistribution.dataDistribution.map((key, value) => MapEntry(key,
-                        DetailVaccine(
-                          tenTinh: state.vaccineDistribution.dataDistribution[key]!.name,
-                          rate: state.vaccineDistribution.dataDistribution[key]!.distributedRate.toDouble(),
-                          plan: formatter.format(state.vaccineDistribution.dataDistribution[key]!.planned),
-                          fullDose: formatter.format(state.vaccineDistribution.dataVacDose[key]!.fulldose),
-                          oneDose:  formatter.format(state.vaccineDistribution.dataVacDose[key]!.onedose),
-                          // vaccine:  formatter.format(state.vaccineDistribution.dataVacDose[key]!.vaccines),
-                        )
-                        )).values.toList()
+            builder: (context, state) {
+              if(state is VnVaccineDistributionLoaded) {
+                var formatter = NumberFormat('#,###,000');
+                return _result_Vac_Search.length == 0 ? ListView.builder(
+                    itemCount: state.vaccineDistribution.dataVacDose.length,
+                    itemBuilder: (context,index) {
+                      final plan=state.vaccineDistribution.dataDistribution["$index"]!.planned;
+                      final fulldose=state.vaccineDistribution.dataVacDose["$index"]!.fulldose;
+                      final onedose=state.vaccineDistribution.dataVacDose["$index"]!.onedose;
+                      return DetailVaccine(
+                        plan: formatter.format(plan),
+                        tenTinh: state.vaccineDistribution.dataDistribution["$index"]!.name ,
+                        rate: state.vaccineDistribution.dataDistribution["$index"]!.distributedRate.toDouble(),
+                        fullDose: formatter.format(fulldose),
+                        oneDose:  formatter.format(onedose),
+                      );
+                    })
+                    : new ListView.builder(
+                        itemCount: _result_Vac_Search.length,
+                        itemBuilder: (context, index){
+                          final fulldose=_result_Vac_Search[index].fulldose;
+                          final onedose=_result_Vac_Search[index].onedose;
+                          final plan=_result_Dis_Search[index].planned;
+                          return DetailVaccine(
+                            plan:plan.toString(),
+                            tenTinh: _result_Vac_Search[index].name,
+                            rate: _result_Dis_Search[index].distributedRate,
+                            fullDose: formatter.format(fulldose),
+                            oneDose:  formatter.format(onedose),
+                          );
+                        }
                     );
                 }
-                return Padding(
-                  padding:  EdgeInsets.symmetric(vertical: size.height*0.2),
-                  child: Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.black))),
-                );
+                return Scaffold();
               },
             ),
           ),
-          // DetailVaccine(size: size, stt: 1,tenTinh: "Hue", fullDose: 11, oneDose: 11, plan: 100, rate: 1, vaccine: 1000,),
-          // DetailVaccine(size: size, stt: 1,tenTinh: "Hue", fullDose: 11, oneDose: 11, plan: 100, rate: 1, vaccine: 1000,),
-          // DetailVaccine(size: size, stt: 1,tenTinh: "Hue", fullDose: 11, oneDose: 11, plan: 100, rate: 1, vaccine: 1000,),
-          // DetailVaccine(size: size, stt: 1,tenTinh: "Hue", fullDose: 11, oneDose: 11, plan: 100, rate: 1, vaccine: 1000,),
-          // DetailVaccine(size: size, stt: 1,tenTinh: "Hue", fullDose: 11, oneDose: 11, plan: 100, rate: 1, vaccine: 1000,),
-
         ],
         ),
     );
+
   }
 
   @override
